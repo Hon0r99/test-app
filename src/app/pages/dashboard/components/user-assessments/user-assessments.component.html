@@ -1,0 +1,32 @@
+@defer () {
+  <div class="px-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+    @if (userAssessments$ | async; as userAssessments) {
+      @for (userAssessment of userAssessments; track userAssessment.id) {
+        <div
+          class="flex items-center border border-gray-500 p-2 rounded hover:bg-blue-400 cursor-pointer"
+          (click)="openGraph(userAssessment.id)"
+        >
+          <img
+            class="w-[140px] h-[140px] rounded mr-3 object-cover"
+            [src]="userAssessment.image_url"
+            alt="{{ userAssessment.name }}"
+          >
+          <div>
+            <h2>{{ userAssessment.name }}</h2>
+            <p>
+              Users Resolved: {{ userAssessment.users_resolved }}
+              <br>
+              Active: {{ userAssessment.active ? 'Yes' : 'No' }}
+            </p>
+          </div>
+
+        </div>
+      }
+    }
+  </div>
+
+} @loading (minimum 1s) {
+  <mat-spinner class="m-auto mt-10"></mat-spinner>
+} @error () {
+  <p>Something went wrong</p>
+}

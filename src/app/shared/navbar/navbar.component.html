@@ -1,0 +1,11 @@
+<ul class="flex justify-center items-center py-2 h-[60px]">
+  @for (link of links; track link.name) {
+    <li
+      class="cursor-pointer font-bold mr-2 hover:text-blue-400 transition-colors duration-200 ease-in-out"
+      [routerLink]="link.path"
+      routerLinkActive="text-blue-600"
+    >
+      {{ link.name }}
+    </li>
+  }
+</ul>
